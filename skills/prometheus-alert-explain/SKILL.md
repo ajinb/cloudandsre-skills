@@ -1,6 +1,6 @@
 ---
 name: prometheus-alert-explain
-description: Turn a Prometheus alert payload into a structured triage brief — plain-English summary, ranked likely causes, ordered triage checklist, and a false-positive check. Use when the user pastes Alertmanager JSON, asks "what does this alert mean", or shows a cryptic on-call page. Honors the on-call discipline: no remediation actions, no fabricated runbook URLs, lower confidence on sparse inputs.
+description: "Turn a Prometheus alert payload into a structured triage brief — plain-English summary, ranked likely causes, ordered triage checklist, and a false-positive check. Use when the user pastes Alertmanager JSON, asks 'what does this alert mean', or shows a cryptic on-call page. Honors the on-call discipline — no remediation actions, no fabricated runbook URLs, lower confidence on sparse inputs."
 license: Apache-2.0
 version: 1.0.0
 tags: [sre, on-call, prometheus, alertmanager, observability]
