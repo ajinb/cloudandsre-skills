@@ -1,0 +1,11 @@
+{
+  "description": "Sparse alert: one label, no annotations -> low confidence, no invented runbook",
+  "input": "{\"alerts\":[{\"status\":\"firing\",\"labels\":{\"alertname\":\"TargetDown\",\"severity\":\"warning\"}}]}",
+  "golden_output": "### Summary\nTargetDown is firing at warning severity, which means Prometheus failed to scrape at least one target. The alert carries no job, instance or annotations, so the affected service is not identifiable from the payload.\n\n### Likely causes\n1. A scrape target stopped responding or was removed without updating service discovery.\n2. Network policy or firewall change blocking the Prometheus scraper.\n3. The exporter process crashed on the target host.\n\n### Triage checklist\n1. Open the Prometheus Targets page and filter for targets in the DOWN state.\n2. Check the `up` metric grouped by job and instance for series that recently changed from 1 to 0.\n3. Compare the down targets against recent service-discovery or network-policy changes.\n4. Read the scrape error message shown for each down target.\n\n### False-positive check\nConfirm the down target is not a pod that was intentionally scaled away within the last scrape interval.\n\nConfidence: low — the alert has no job, instance or annotations to anchor a cause.",
+  "expect": {
+    "contains": [
+      "TargetDown"
+    ],
+    "confidence": "low"
+  }
+}

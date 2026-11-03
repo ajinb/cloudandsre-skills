@@ -2,8 +2,12 @@
 name: prometheus-alert-explain
 description: "Turn a Prometheus alert payload into a structured triage brief — plain-English summary, ranked likely causes, ordered triage checklist, and a false-positive check. Use when the user pastes Alertmanager JSON, asks 'what does this alert mean', or shows a cryptic on-call page. Honors the on-call discipline — no remediation actions, no fabricated runbook URLs, lower confidence on sparse inputs."
 license: Apache-2.0
-version: 1.0.0
-tags: [sre, on-call, prometheus, alertmanager, observability]
+metadata:
+  author: Ajin Baby
+  version: "1.1.0"
+  tags: "sre on-call prometheus alertmanager observability"
+  guardrails: "no-remediation no-fabricated-urls"
+  output-schema: assets/output-schema.json
 ---
 
 # prometheus-alert-explain
@@ -76,7 +80,7 @@ checkout-api has been returning 5xx for ~7% of requests for the past 10 minutes 
 1. Open the runbook: https://runbooks.example.com/checkout-api-5xx
 2. Compare the v412 deploy diff against the prior version — config, schema, retry settings.
 3. Check downstream health — DB error rate, payment-provider latency — for the same 10-minute window.
-4. If the regression is in v412, prepare a rollback; do not execute without IC sign-off.
+4. Check the deploy's error logs and traces for the first failing request after v412 went live, and note the exception type.
 
 ### False-positive check
 Confirm the 5xx rate is sustained, not a single 1-minute spike from a known-bad deploy probe.

@@ -31,4 +31,4 @@ labels: bug
 - [ ] Codex CLI
 - [ ] Other: ___
 
-Model: <!-- e.g. claude-sonnet-4-6 -->
+Model: <!-- e.g. claude-sonnet-5-5 -->

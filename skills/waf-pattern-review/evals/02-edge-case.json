@@ -1,0 +1,10 @@
+{
+  "description": "Single-instance cron job design",
+  "input": "A nightly cron on one VM exports the orders table to S3. If it fails, nobody notices until finance asks.",
+  "golden_output": "### Verdict\nNot production-ready.\n\n### What this design gets right\n- The export target is durable object storage, so completed exports are not lost.\n\n### Critical gaps\n1. **Health Endpoint Monitoring for the job** — a failed run is silent until a human asks. Emit a success heartbeat per run and alert when it is missing after the expected window.\n2. **Retry with backoff** — a transient database or network error fails the whole night's export. Retry the run a bounded number of times before alerting.\n\n### Nice-to-haves\n1. **Compensating transaction** — write to a temporary key and rename on success, so a partial export is never mistaken for a complete one.\n\n### Two-way doors vs one-way doors\nThe heartbeat and retries are two-way doors. Moving off the single VM to a managed scheduler is closer to a one-way door; defer it until the job's runtime or criticality demands it.",
+  "expect": {
+    "contains": [
+      "Not production-ready"
+    ]
+  }
+}

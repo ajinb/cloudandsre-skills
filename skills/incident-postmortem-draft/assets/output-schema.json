@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "incident-postmortem-draft output",
+  "type": "object",
+  "required": [
+    "title",
+    "Summary",
+    "Timeline",
+    "Contributing factors",
+    "Detection gap",
+    "Action items",
+    "Open questions"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "pattern": "^Incident Postmortem"
+    },
+    "Summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Timeline": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "Time (UTC)",
+          "Event"
+        ]
+      }
+    },
+    "Contributing factors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "Detection gap": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Response — what went well": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "Response — what went poorly": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "Action items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "Action",
+          "Owner role"
+        ]
+      }
+    },
+    "Open questions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    }
+  }
+}

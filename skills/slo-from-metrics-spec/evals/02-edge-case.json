@@ -1,0 +1,10 @@
+{
+  "description": "No latency histogram -> latency SLI goes to Gaps",
+  "input": "Service: auth-api, used by every other service for token checks. Metrics:\ngrpc_server_handled_total{grpc_service=\"auth\",grpc_code=\"...\"}",
+  "golden_output": "### Service\nauth-api validates tokens for every other internal service, so its failures cascade.\n\n### SLIs\n- Availability — `sum(rate(grpc_server_handled_total{grpc_service=\"auth\",grpc_code!~\"Unavailable|Internal|Unknown|DeadlineExceeded\"}[5m])) / sum(rate(grpc_server_handled_total{grpc_service=\"auth\"}[5m]))` — a failed token check fails the caller's request.\n\n### Objectives\n- Availability 99.95% over 28 days — error budget (1 − 0.9995) × 40,320 min = 20.2 minutes.\n\n### Burn-rate alerts\n- Recording rules: `availability_sli_<window>` is the availability SLI with `[5m]` replaced by `[<window>]`, for 5m, 30m, 1h and 6h.\n- Page: burn rate above 14.4x over 1h and 5m — `(1 - availability_sli_1h) > (14.4 * 0.0005) and (1 - availability_sli_5m) > (14.4 * 0.0005)`.\n- Ticket: burn rate above 6x over 6h and 30m — `(1 - availability_sli_6h) > (6 * 0.0005) and (1 - availability_sli_30m) > (6 * 0.0005)`.\n\n### Gaps\n- No latency histogram, so a latency SLI is not possible; add `grpc_server_handling_seconds_bucket` (go-grpc-prometheus with histograms enabled).",
+  "expect": {
+    "contains": [
+      "latency"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "slo-from-metrics-spec output",
+  "type": "object",
+  "required": [
+    "Service",
+    "SLIs",
+    "Objectives",
+    "Burn-rate alerts",
+    "Gaps"
+  ],
+  "properties": {
+    "Service": {
+      "type": "string",
+      "minLength": 1
+    },
+    "SLIs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "Objectives": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "Burn-rate alerts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 2
+    },
+    "Gaps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    }
+  }
+}

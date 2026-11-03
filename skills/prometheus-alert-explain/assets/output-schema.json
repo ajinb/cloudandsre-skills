@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "prometheus-alert-explain output",
+  "type": "object",
+  "required": [
+    "Summary",
+    "Likely causes",
+    "Triage checklist",
+    "False-positive check",
+    "confidence"
+  ],
+  "properties": {
+    "Summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Likely causes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "maxItems": 5
+    },
+    "Triage checklist": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 2,
+      "maxItems": 8
+    },
+    "False-positive check": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "level"
+      ]
+    }
+  }
+}
