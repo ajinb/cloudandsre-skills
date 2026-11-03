@@ -1,0 +1,10 @@
+{
+  "description": "Additive-only plan stays low risk",
+  "input": "  # aws_cloudwatch_log_group.api will be created\n  + resource \"aws_cloudwatch_log_group\" \"api\" {\n      + name = \"/ecs/api\"\n    }\nPlan: 1 to add, 0 to change, 0 to destroy.",
+  "golden_output": "### Risk\nlow\nThe plan only adds one log group and changes nothing existing.\n\n### Summary\nThe plan creates a CloudWatch log group for the API service. Terraform reports 1 add, 0 changes and 0 destroys.\n\n### Notable changes\n- `aws_cloudwatch_log_group.api` — create. New log group with no retention set, so logs are kept indefinitely.\n\n### Blast radius\nMinimal: nothing existing is modified. The only cost is log storage growing without a retention policy.\n\n### Confirm before approving\n- Should `aws_cloudwatch_log_group.api` set a retention period to bound storage cost?",
+  "expect": {
+    "contains": [
+      "low"
+    ]
+  }
+}

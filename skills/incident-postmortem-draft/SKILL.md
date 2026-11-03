@@ -2,8 +2,12 @@
 name: incident-postmortem-draft
 description: Convert a Slack incident thread (or a paste of timestamped messages) into a blameless, structured postmortem draft. Output is markdown ready for human review. Use when the user pastes a Slack export, asks "draft a postmortem from this thread", or describes an incident in chronological-message form. Schema-enforced blamelessness — no proper names, role-based attribution only.
 license: Apache-2.0
-version: 1.0.0
-tags: [sre, incident-response, postmortem, blameless, slack]
+metadata:
+  author: Ajin Baby
+  version: "1.1.0"
+  tags: "sre incident-response postmortem blameless slack"
+  guardrails: "no-proper-names no-fabricated-urls"
+  output-schema: assets/output-schema.json
 ---
 
 # incident-postmortem-draft

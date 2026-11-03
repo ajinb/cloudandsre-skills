@@ -1,0 +1,14 @@
+{
+  "description": "Named speakers must become roles; unknown root cause goes to open questions",
+  "input": "[09:01] priya: queue depth alert on billing-worker\n[09:05] tom: consumers look stuck, restarting them\n[09:12] priya: depth draining, back to normal at 09:20",
+  "golden_output": "# Incident Postmortem — billing-worker queue backlog\n\n**Status:** Draft for review\n**Severity:** Unknown\n**Duration:** ~00:19 (09:01Z → 09:20Z)\n**Customer impact:** Not captured in thread.\n\n## Summary\nA queue-depth alert fired on billing-worker at 09:01 UTC because consumers stopped processing. Restarting the consumers drained the backlog, and depth returned to normal at 09:20 UTC.\n\n## Timeline\n| Time (UTC) | Category | Actor role | Event |\n|---|---|---|---|\n| 09:01 | observation | on-call engineer | Queue depth alert fired on billing-worker. |\n| 09:05 | action | platform engineer | Restarted the stuck consumers. |\n| 09:20 | observation | on-call engineer | Queue depth back to normal. |\n\n## Contributing factors\n1. Consumers stopped processing for a reason the thread does not record.\n\n## Detection gap\nNot captured in thread whether the alert fired promptly after consumers stalled.\n\n## Response — what went well\n- The backlog drained within 15 minutes of the restart.\n\n## Response — what went poorly\n- The cause of the stall was not investigated before restarting.\n\n## Action items\n| Action | Owner role | Due |\n|---|---|---|\n| Capture consumer thread dumps before the next restart | platform engineering | next incident |\n\n## Open questions\n- Why did the consumers stop processing?\n- Was any billing work delayed long enough to affect customers?",
+  "expect": {
+    "contains": [
+      "Open questions"
+    ],
+    "absent": [
+      "priya",
+      "tom"
+    ]
+  }
+}

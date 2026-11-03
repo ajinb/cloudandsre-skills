@@ -2,8 +2,12 @@
 name: waf-pattern-review
 description: Review code, architecture, or design notes against the Azure Well-Architected Framework reliability patterns and the AWS Well-Architected reliability pillar. Identifies missing patterns (Circuit Breaker, Retry, Bulkhead, Health Endpoint Monitoring, Queue-Based Load Leveling, etc.), misapplied ones, and the specific behavior change each recommendation would produce. Use when the user shares a design doc, asks "is this reliable enough for production", pastes a service architecture, or asks for a WAF gap analysis.
 license: Apache-2.0
-version: 1.0.0
-tags: [reliability, well-architected, azure-waf, aws-waf, architecture-review, sre]
+metadata:
+  author: Ajin Baby
+  version: "1.1.0"
+  tags: "reliability well-architected azure-waf aws-waf architecture-review sre"
+  guardrails: "no-fabricated-urls"
+  output-schema: assets/output-schema.json
 ---
 
 # waf-pattern-review

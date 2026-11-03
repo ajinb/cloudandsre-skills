@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "waf-pattern-review output",
+  "type": "object",
+  "required": [
+    "Verdict",
+    "What this design gets right",
+    "Critical gaps",
+    "Nice-to-haves",
+    "Two-way doors vs one-way doors"
+  ],
+  "properties": {
+    "Verdict": {
+      "type": "string",
+      "minLength": 1
+    },
+    "What this design gets right": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "Critical gaps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "Nice-to-haves": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "Two-way doors vs one-way doors": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

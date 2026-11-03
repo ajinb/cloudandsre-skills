@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "terraform-plan-review output",
+  "type": "object",
+  "required": [
+    "Risk",
+    "Summary",
+    "Notable changes",
+    "Blast radius",
+    "Confirm before approving"
+  ],
+  "properties": {
+    "Risk": {
+      "type": "string",
+      "pattern": "^(low|medium|high|critical)\\b"
+    },
+    "Summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Notable changes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "Blast radius": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Confirm before approving": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    }
+  }
+}
