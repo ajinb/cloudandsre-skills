@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "cloudandsre-skills"
+message: "If you use this software, please cite it using the metadata below."
+type: software
+authors:
+  - family-names: Baby
+    given-names: Ajin
+    orcid: "https://orcid.org/0009-0007-6190-9516"
+repository-code: "https://github.com/ajinb/cloudandsre-skills"
+url: "https://cloudandsre.com"
+abstract: "Opinionated, production-shaped skills for AI agents doing SRE and cloud-reliability work. Portable across Claude Code, Claude Desktop, Codex CLI, and any agent runtime that consumes markdown prompts."
+license: Apache-2.0
+version: "unreleased"
+date-released: "2026-11-02"
+keywords:
+  - agent-skills
+  - sre
+  - claude-code
+  - prompts
+  - reliability
